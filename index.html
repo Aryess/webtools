@@ -3,12 +3,15 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
-    <title>JS Bin</title>
+    <title>Webtools</title>
 </head>
 <body>
 <div id="main">
     <textarea cols=150 rows=50 id="textbox" v-model="text"></textarea>
-    <button id="parseJson" @click="test">Parse json</button>
+    <button @click="parseJson">Parse json</button>
+    <button @click="stringify">Minify json</button>
+    <button @click="b64encode">Base64 encode</button>
+    <button @click="b64decode">Base64 decode</button> 
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.3/vue.js"></script>
 <script>
@@ -18,9 +21,18 @@
             text: ''
         },
         methods: {
-            test: function() {
+            parseJson: function() {
                 this.text = JSON.parse(this.text);
-            }
+            },
+	    stringify: function() {
+	        this.text = JSON.stringify(this.text);
+	    },
+	    b64encode: function() {
+		this.text = btoa(this.text);
+	    },
+	    b64decode: function() {
+		this.text = atob(this.text);
+	    }
         }
     })
 </script>
